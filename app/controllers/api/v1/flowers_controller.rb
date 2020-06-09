@@ -1,7 +1,6 @@
 module Api
   module V1
     class FlowersController < ApplicationController
-      skip_before_action :verify_authenticity_token
       def index
         flowers = Flower.order('id ASC')
         render json: {status: 'SUCCESS', message:'List of Available Flowers', data: flowers}, status: :ok
@@ -42,7 +41,7 @@ module Api
       private
 
       def flower_params
-        params.permit(:name, :color)
+        params.permit(:name, :color, :cost)
       end
 
     end

@@ -1,7 +1,6 @@
 module Api
   module V1
     class BouquetsController < ApplicationController
-      skip_before_action :verify_authenticity_token
       def index
         bouquets = Bouquet.order('id ASC')
         render json: {status: 'SUCCESS', message:'List of bouquets', data: bouquets}, status: :ok
@@ -42,7 +41,7 @@ module Api
       private
 
       def bouquet_params
-        params.permit(:name, :size)
+        params.permit(:name, :size, :cost)
       end
 
     end
